@@ -1,0 +1,58 @@
+
+CS1675 
+University of Pittsburgh
+Shuwen Zhou
+Homework 2
+
+	To determine which feature is relevent:
+		>> java Winnow <config file> <date file>
+		>> java Perceptron <config file> <date file> 
+	To run test on both algorithm:
+		>> java CrossValidation <config file> <data file> <number of partition of data file>
+
+	For the Perceptron algorithm, you need to supply a learning rate. I recommend a default
+	value of 0.05. If you want to find a more suitable value, you would need to reserve some
+	instances of the dataset for a development set before you set up the 10 fold cross
+	validation experiment.
+
+Library:
+	algs4.jar
+	stdlib.jar
+	are developed by The textbook Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
+	Usage see: http://algs4.cs.princeton.edu/code/
+	Reference see: http://algs4.cs.princeton.edu/home/
+	Used here only for file handling and easier coding.
+	
+Theory:
+	Winnow
+		initial w(i) = 1 for all i
+		if misclassfying a positive training example x
+			x(i) = 1 : w(i) <- 2w(i)
+		else if misclassifying a negative training example x
+			x(i) = 1 : w(i) <- w(i)/2
+		else do nothing
+	Perceptron
+		initial w(1) = 0
+		if predict wrong: w(t+1) = w(t) + y(t)*x(t)
+		else do nothing
+	
+General Theory:
+	y = w0 + sum(x(i)*w(i))
+	w0 is threshold
+	
+Cross Validation:
+	@Hwa: "suppose there is a student A and a student B. 
+	You will give both A and B the same set of training examples to help them learn. 
+	Then you give both of them the same exam. 
+	You have to do this for K trials and compare the performance of A and B on all K sets of tests"
+	---
+	Divide data into K partition
+	For 2 algorithm: Perceptron and Winnow:
+		for each(1 partiton of data: all K data):
+			compare(K-1 partition's prediction result, 1 's data real result)
+			matching rate of algorithm(n) += rate(n-1)
+		end of for
+	end of for
+	
+
+	
