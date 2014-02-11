@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Winnow {
 
 	public static void main(String[] args) {
-		if (args.length != 3) {
+		if (args.length != 2) {
 			StdOut.println("Wrong arguments number");
-			StdOut.println("Usage: java Perceptron <config file> <date file> <test file>");
+			StdOut.println("Usage: java Perceptron <config file> <date file>");
 		}
 
 		ExampleList e = new ExampleList(new In(args[1]), new In(args[0]));
