@@ -6,14 +6,15 @@ Homework 2
 
 	To determine which feature is relevent:
 		>> java Winnow <config file> <date file>
+		>> java Winnow <config file> <date file> <test file>
 		>> java Perceptron <config file> <date file> 
+		>> java Perceptron <config file> <date file> <test file>
 	To run test on both algorithm:
 		>> java CrossValidation <config file> <data file> <number of partition of data file>
-
-	For the Perceptron algorithm, you need to supply a learning rate. I recommend a default
-	value of 0.05. If you want to find a more suitable value, you would need to reserve some
-	instances of the dataset for a development set before you set up the 10 fold cross
-	validation experiment.
+ 		eg.java CrossValidation  artificial.config artificial.data 10
+		   java CrossValidation votes.config votes.data 10
+		   
+		   
 
 Library:
 	algs4.jar
@@ -29,7 +30,7 @@ Theory:
 		if misclassfying a positive training example x
 			x(i) = 1 : w(i) <- 2w(i)
 		else if misclassifying a negative training example x
-			x(i) = 1 : w(i) <- w(i)/2
+			x(i) = 1 : w(i) = 0
 		else do nothing
 	Perceptron
 		initial w(1) = 0

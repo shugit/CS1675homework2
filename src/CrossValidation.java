@@ -25,8 +25,8 @@ public class CrossValidation {
 			StdOut.printf(
 					"-----------group %d TEST-----------------LEARNING-------------------\n",
 					i);
-			StdOut.print("correct " + Perceptron.start(el) + "\t");
-			StdOut.println("correct " + Perceptron.start(el2));
+			StdOut.print("test " + Perceptron.start(el) + "\t");
+			StdOut.println("learning " + Perceptron.start(el2));
 			// compare(K-1 partition's prediction result, 1 's data real result)
 			int[] res = compare(Perceptron.start(el), Perceptron.start(el2));
 			// matching rate of algorithm(n) += rate(n-1)
@@ -46,8 +46,8 @@ public class CrossValidation {
 			StdOut.printf(
 					"-----------group %d TEST-----------------LEARNING-------------------\n",
 					i);
-			StdOut.print("correct " + Winnow.start(el) + "\t");
-			StdOut.println("correct " + Winnow.start(el2));
+			StdOut.print("test " + Winnow.start(el) + "\t");
+			StdOut.println("learning " + Winnow.start(el2));
 			int[] res = compare(Winnow.start(el), Winnow.start(el2));
 			all2 += res[0];
 			correct2 += res[1];

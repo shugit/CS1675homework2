@@ -3,18 +3,30 @@ import java.util.ArrayList;
 public class Perceptron {
 
 	public static void main(String[] args) {
-		if (args.length != 2) {
+		if (args.length == 2) {
+			StdOut.println("FINDING OUT WHICH FEATURE IS IMPORTANT:");
+			ExampleList e = new ExampleList(new In(args[1]), new In(args[0]));
+			// StdOut.println(e);
+			ArrayList<Integer> result = start(e);
+			for(Integer i : result){
+				StdOut.println(e.getFeatureName(i));
+			}	
+		} else if (args.length == 3){
+			StdOut.println("COMPARING FILES");
+			ExampleList e = new ExampleList(new In(args[1]), new In(args[0]));
+			ExampleList el = new ExampleList(new In(args[2]), new In(args[0]));
+			int[] res = CrossValidation.compare(Winnow.start(e), Winnow.start(el));
+			int all = res[0];
+			int correct = res[1];
+			StdOut.printf("correctRate is %.2f\n", 1.0 * correct / all);
+			
+		} else {
 			StdOut.println("Wrong arguments number");
 			StdOut.println("Usage: java Perceptron <config file> <date file>");
+			StdOut.println("Usage: java Perceptron <config file> <date file> <test file>");
 		}
 
-		ExampleList e = new ExampleList(new In(args[1]), new In(args[0]));
-		// StdOut.println(e);
-
-		for(Integer i : start(e)){
-			StdOut.println(e.getFeatureName(i));
-		}
-		
+			
 	}
 
 	public static ArrayList<Integer> start(ExampleList el) {
@@ -49,7 +61,7 @@ public class Perceptron {
 		ArrayList<Integer> correct = new ArrayList<Integer>();
 		//StdOut.println("result:");
 		for (int i = 0; i < el.sizeOfFeature(); i++) {
-			//StdOut.print(i + "\t" + w.get(i) + "  ");
+			//StdOut.print("feature="+i + "\t" + "weight="+w.get(i) + "  \n");
 			if (w.get(i) > 0) {
 				//StdOut.print("\t<-----it counts! " + el.getFeatureName(i));
 				correct.add(i);
