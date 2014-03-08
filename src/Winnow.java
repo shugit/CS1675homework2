@@ -67,7 +67,8 @@ public class Winnow {
 						// half.
 					for (int j = 0; j < el.sizeOfFeature() && fault < faultMax; j++) {
 						if (el.get(i).getFeature(j) == 1) {
-							//double newW = w.get(j) / 2.0;
+							double newW = w.get(j) / 2.0;
+							//w.set(j, newW);
 							w.set(j, 0.0);
 						}
 					}// END OF IF
